@@ -5,4 +5,11 @@
   <%= submit_tag 'Search Stock Quote' %>
 <% end %>
 <br>
-<p>Searched for: <%= @symbol %></p>
+
+<% if @symbol %>
+  <% @data.each do |coin| %>
+    <% if coin["symbol"] == @symbol %>
+      <%= coin["name"] %>: $<%= coin["quote"]["USD"]["price"] %>
+    <% end %>
+  <% end %>
+<% end %>
