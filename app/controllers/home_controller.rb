@@ -5,10 +5,12 @@ class HomeController < ApplicationController
                              BASE_URL, 
                              query: 
                                     {
-                                      "CMC_PRO_API_KEY": "#{COIN_KEY}"
+                                      COIN_KEY
                                     }
                             ).to_json
     @coins = JSON.parse(response)
+    @data = @coins["data"]
+    @my_coins = ["BTC","XRP","ADA","XLM", "STEEM"]
   end
 
   def about
