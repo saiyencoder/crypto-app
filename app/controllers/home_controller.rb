@@ -18,5 +18,13 @@ class HomeController < ApplicationController
 
   def search
     @symbol = params[:sym]
+
+    if @symbol
+      @symbol = @symbol.upcase 
+    end
+
+    if @symbol == ""
+      @symbol = "Please enter a currency to search"
+    end
   end
 end
