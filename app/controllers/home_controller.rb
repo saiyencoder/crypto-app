@@ -5,7 +5,7 @@ class HomeController < ApplicationController
                              BASE_URL, 
                              query: 
                                     {
-                                      COIN_KEY
+                                      "CMC_PRO_API_KEY": "#{COIN_KEY}"
                                     }
                             ).to_json
     @coins = JSON.parse(response)
@@ -14,5 +14,8 @@ class HomeController < ApplicationController
   end
 
   def about
+  end
+
+  def search
   end
 end
