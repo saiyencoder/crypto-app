@@ -1,2 +1,9 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
+
+.nav-link:hover {
+  color: white !important;
+}
+
+.active {
+  color: white !important; 
+}

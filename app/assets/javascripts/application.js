@@ -15,3 +15,20 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function() {
+    $(".nav-link").filter(function(){return this.href==location.href}).parent().addClass('active').siblings().removeClass('active')
+    $(".nav-link").click(function(){
+      $(this).parent().addClass('active').siblings().removeClass('active')  
+  });
+});
+
+
+
+
+
+
+
+
+
+
