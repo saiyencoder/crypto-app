@@ -1,9 +1,17 @@
 @import "bootstrap";
 
+body {
+  background: #e0e0eb;
+}
+
 .nav-link:hover {
   color: white !important;
 }
 
 .active {
   color: white !important; 
+}
+
+.container-fluid {
+  padding: 80px 50px;
 }
