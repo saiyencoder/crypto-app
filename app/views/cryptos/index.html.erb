@@ -2,7 +2,7 @@
 
 <% @cryptos.each do |crypto| %>
   Symbol: <%= crypto.symbol %> <br>
-  Created by: <%= crypto.user_id.email %> <br>
+  Created by: <%= crypto.user_id %> <br>
   Cost Per: $ <%= crypto.cost_per %> <br>
   Amount Owned: $ <%= crypto.amount_owned %><br>
 <% end %>

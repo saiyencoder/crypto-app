@@ -28,6 +28,12 @@ class CryptosController < ApplicationController
   end
 
   def update
+    if @crypto.update(crypto_params)
+      flash[:success] = "Crypto was successfully updated"
+      redirect_to cryptos_path
+    else
+      render 'edit'
+    end  
   end
 
   def destroy
