@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/about',   to: 'home#about'
   get '/search',  to: 'home#search'
   post '/search', to: 'home#search'
+  resources :cryptos
 end
