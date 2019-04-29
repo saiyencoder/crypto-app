@@ -2,8 +2,10 @@
 <li><%= link_to 'About', about_path, class: "nav-link" %></li>
 <li><%= link_to 'Search', search_path, class: "nav-link" %></li>
 <% if user_signed_in? %>
-  <li><%= link_to 'Log Out', destroy_user_session_path, class: "nav-link", method: :delete %></li>
+  <li><%= link_to 'Crypto List', cryptos_path, class: "nav-link" %></li>
+  <li><%= link_to 'Add New', new_crypto_path, class: "nav-link" %></li>
   <li><%= link_to 'Edit Profile', edit_user_registration_path, class: "nav-link" %></li>
+  <li><%= link_to 'Log Out', destroy_user_session_path, class: "nav-link", method: :delete %></li>
 <% else %>
   <li><%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %></li>
   <li><%= link_to 'Log In', new_user_session_path, class: "nav-link" %></li>
