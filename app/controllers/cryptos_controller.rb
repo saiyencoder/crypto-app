@@ -18,7 +18,7 @@ class CryptosController < ApplicationController
     
     if @crypto.save
       flash[:success] = "Crypto was successfully created"
-      redirect_to cryptos_path
+      redirect_to @crypto
     else
       render 'new'
     end
@@ -30,7 +30,7 @@ class CryptosController < ApplicationController
   def update
     if @crypto.update(crypto_params)
       flash[:success] = "Crypto was successfully updated"
-      redirect_to cryptos_path
+      redirect_to @crypto
     else
       render 'edit'
     end  
