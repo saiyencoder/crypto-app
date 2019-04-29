@@ -1,5 +1,7 @@
 class Crypto < ApplicationRecord
   validates :symbol, presence: true
+  validates :cost_per, presence: true
+  validates :amount_owned, presence: true
   validates_numericality_of :cost_per, :greater_than => 0
   validates_numericality_of :amount_owned, :greater_than => 0
   validate :price_is_valid_decimal_precision
