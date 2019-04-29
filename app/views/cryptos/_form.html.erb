@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="card mx-auto border-dark mb-3" style="width: 40rem;">
+    <h4 class="card-header text-center bg-primary text-white">New Crypto</h4>
+    <div class="card-body">
+      <%= form_for @crypto do |f| %>
+        <div class="form-group">
+          <div class="control-label">
+            <%= f.label :symbol %>
+          </div>
+          <div>
+            <%= f.text_field :symbol, class: "form-control", placeholder: "Enter symbol", autofocus: true %>
+          </div><br>
+          <div class="control-label">
+            <%= f.label :user_id, "User Id" %>
+          </div>
+          <div>
+            <%= f.text_field :user_id, class: "form-control", value: current_user.id, :readonly => true %>
+          </div><br>
+          <div class="form-row">
+            <div class="col-md-6">
+              <%= f.label :cost_per, "Cost Per" %>
+              <%= f.text_field :cost_per, class: "form-control", placeholder: "0.00" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :amount_owned, "Amount Owned" %>
+              <%= f.text_field :amount_owned, class: "form-control", placeholder: "0.00" %>
+            </div>
+          </div><br>
+          <div>
+            <div class="form-inline">
+              <div>
+                <%= f.submit 'Create', class: "btn btn-primary" %>
+              </div>
+              <div class="ml-auto">
+                <%= link_to "Cancel", root_path %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
