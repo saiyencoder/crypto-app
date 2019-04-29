@@ -11,13 +11,15 @@ class HomeController < ApplicationController
   def search
     @symbol = params[:sym]
 
+    if @symbol == ""
+      # This helps the flash msg not to appear when search is empty
+      flash.now[:notice] = "Please enter a currency to search" if params[:searching]
+    end
+
     if @symbol
       @symbol = @symbol.upcase 
     end
 
-    if @symbol == ""
-      @symbol = "Please enter a currency to search"
-    end
   end
 
   private

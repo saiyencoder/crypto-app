@@ -1,2 +1,22 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  background: #e0e0eb;
+}
+
+.nav-link:hover {
+  color: white !important;
+}
+
+.active {
+  color: white !important; 
+}
+
+.flash-alert {
+  padding-top: 30px;
+  width: 50%;
+}
+
+.search-card {
+  padding-top: 40px;
+}
