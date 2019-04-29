@@ -1,15 +1,33 @@
-<h3>Crypto Currency Search</h3>
-<br>
-<%= form_tag search_path, method: :post do %>
-  <%= text_field_tag 'sym', nil, placeholder: 'Enter Crypto Symbol', size: 50 %>
-  <%= submit_tag 'Search Stock Quote' %>
-<% end %>
+<div class="search-card">
+  <div class="card mx-auto border-dark mb-3" style="width: 40rem;">
+    <div class="card-header bg-primary text-white">
+      <h3 class="text-center">Crypto Currency Search</h3>
+    </div>
+    <div class="card-body form-inline text-center">
+      <%= form_tag search_path, method: :post do %>
+        <%= text_field_tag 'sym', nil, placeholder: 'Enter Crypto Symbol', size: 50, class: 'form-control w-50' %>
+        <!-- This helps the flash msg not to appear when search is empty -->
+        <%= hidden_field_tag :searching, true %>
+        <%= submit_tag 'Search Stock Quote', class: "btn btn-warning" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 <br>
 
-<% if @symbol %>
-  <% @data.each do |coin| %>
-    <% if coin["symbol"] == @symbol %>
-      <%= coin["name"] %>: $<%= coin["quote"]["USD"]["price"] %>
-    <% end %>
-  <% end %>
+<% if @symbol && @symbol != "" %>
+  <div class="search-card">
+    <div class="card mx-auto border-dark mb-3" style="width: 40rem;">
+      <% @data.each do |coin| %>
+        <% if coin["symbol"] == @symbol %>
+        <div class="card-header bg-primary text-white text-center">
+          <h4><%= coin["symbol"] %></h4>
+        </div>
+        <div class="card-body text-center">
+          <%= coin["name"] %>: $<%= coin["quote"]["USD"]["price"] %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
