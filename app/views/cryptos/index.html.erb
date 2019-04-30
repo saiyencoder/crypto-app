@@ -1,8 +1,10 @@
 <h1>Cryptos Page</h1>
 
 <% @cryptos.each do |crypto| %>
-  Symbol: <%= link_to "#{crypto.symbol}", crypto %> <br>
-  Created by: <%= crypto.user_id %> <br>
-  Cost Per: $ <%= crypto.cost_per %> <br>
-  Amount Owned: $ <%= crypto.amount_owned %><br>
+  <% if crypto.user_id == current_user.id %>
+    Symbol: <%= link_to "#{crypto.symbol}", crypto %> <br>
+    Created by: <%= crypto.user_id %> <br>
+    Cost Per: $ <%= crypto.cost_per %> <br>
+    Amount Owned: $ <%= crypto.amount_owned %><br>
+  <% end %>
 <% end %>

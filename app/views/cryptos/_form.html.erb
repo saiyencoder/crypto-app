@@ -12,12 +12,9 @@
           <div>
             <%= f.text_field :symbol, class: "form-control", placeholder: "Enter symbol", autofocus: true %>
           </div><br>
-          <div class="control-label">
-            <%= f.label :user_id, "User Id" %>
-          </div>
           <div>
-            <%= f.text_field :user_id, class: "form-control", value: current_user.id, :readonly => true %>
-          </div><br>
+            <%= f.text_field :user_id, class: "form-control", value: current_user.id, type: "hidden" %>
+          </div>
           <div class="form-row">
             <div class="col-md-6">
               <%= f.label :cost_per, "Cost Per" %>
