@@ -1,4 +1,5 @@
 class Crypto < ApplicationRecord
+  belongs_to :user
   validates :symbol, :cost_per, :amount_owned, presence: true
   validates_numericality_of :cost_per, :amount_owned, greater_than: 0
   validate :price_is_valid_decimal_precision

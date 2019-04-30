@@ -1,6 +1,6 @@
 class CryptosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_crypto, only: [:show, :edit, :update]
+  before_action :set_crypto, only: [:show, :edit, :update, :destroy]
 
   def index
     @cryptos = Crypto.all
@@ -37,6 +37,9 @@ class CryptosController < ApplicationController
   end
 
   def destroy
+    @crypto.destroy
+    flash[:danger] = "Crypto has been deleted"
+    redirect_to cryptos_path
   end
 
   private
