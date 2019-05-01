@@ -1,10 +1,32 @@
-<h1>Cryptos Page</h1>
+<div class="crypto-header">
+  <div class="card text-white mx-auto inside-crypto-header" style="width: 25rem;">
+    <div class="card-body text-center">
+      <h1>Crypto Currency</h1>
+    </div>
+  </div>
+</div>
 
-<% @cryptos.each do |crypto| %>
-  <% if crypto.user_id == current_user.id %>
-    Symbol: <%= link_to "#{crypto.symbol}", crypto %> <br>
-    Created by: <%= crypto.user_id %> <br>
-    Cost Per: $ <%= crypto.cost_per %> <br>
-    Amount Owned: $ <%= crypto.amount_owned %><br>
-  <% end %>
-<% end %>
+<div class="crypto-table">
+  <table class="table table-striped table-bordered table-light">
+    <thead class="crypto-table-header text-white">
+      <tr>
+        <th scope="col">Symbol</th>
+        <th scope="col" style="width: 20%;">Created by (User Id)</th>
+        <th scope="col">Cost Per</th>
+        <th scope="col">Amount Owned</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cryptos.each do |crypto| %>
+        <tr>
+        <% if crypto.user_id == current_user.id %>
+          <td> <%= link_to "#{crypto.symbol}", crypto %> </td>
+          <td> <%= crypto.user_id %> </td>
+          <td> $ <%= crypto.cost_per %> </td>
+          <td> $ <%= crypto.amount_owned %> </td>
+        <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
