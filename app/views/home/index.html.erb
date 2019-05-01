@@ -1,9 +1,9 @@
 <h1>Home Page</h1>
 
-<%# for api_coin in @data %>
-  <%# for coin in @my_coins %>
-    <%# if coin == api_coin["symbol"] %>
-      <!-- <%# api_coin["name"] %>: $<%# api_coin["quote"]["USD"]["price"] %><br><br> -->
-    <%# end %>
-  <%# end %>
-<%# end %>
+<% for api_coin in @data %>
+  <% for coin in @my_coins %>
+    <% if coin == api_coin["symbol"] %>
+      <%= api_coin["name"] %>: $<%= api_coin["quote"]["USD"]["price"] %><br><br>
+    <% end %>
+  <% end %>
+<% end %>

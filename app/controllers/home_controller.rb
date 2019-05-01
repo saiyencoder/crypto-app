@@ -22,18 +22,4 @@ class HomeController < ApplicationController
 
   end
 
-  private
-  
-  def api_data
-    response = HTTParty.get(
-                             BASE_URL, 
-                             query: 
-                                    {
-                                      "CMC_PRO_API_KEY": "#{COIN_KEY}"
-                                    }
-                            ).to_json
-    @coins = JSON.parse(response)
-    @data = @coins["data"]
-  end
-
 end
