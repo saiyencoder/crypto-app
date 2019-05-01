@@ -5,5 +5,6 @@ Created by: <%= @crypto.user_id %> <br>
 Cost Per: $ <%= @crypto.cost_per %> <br>
 Amount Owned: $ <%= @crypto.amount_owned %><br><br>
 
-<%= link_to "Edit", edit_crypto_path, class: "btn btn-info" %>
+<%= link_to "Back", cryptos_path, class: "btn btn-info" %>
+<%= link_to "Edit", edit_crypto_path, class: "btn btn-warning" %>
 <%= link_to "Delete", crypto_path(@crypto), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
