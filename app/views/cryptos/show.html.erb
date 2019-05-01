@@ -1,10 +1,20 @@
-<h1>Show Page</h1>
-
-Symbol: <%= @crypto.symbol %> <br>
-Created by: <%= @crypto.user_id %> <br>
-Cost Per: $ <%= @crypto.cost_per %> <br>
-Amount Owned: $ <%= @crypto.amount_owned %><br><br>
-
-<%= link_to "Back", cryptos_path, class: "btn btn-info" %>
-<%= link_to "Edit", edit_crypto_path, class: "btn btn-warning" %>
-<%= link_to "Delete", crypto_path(@crypto), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+<div class="card bg-light border-dark mb-3 mx-auto" style="max-width: 18rem;">
+  <div class="card-header text-white text-center inside-crypto-header">
+    <h4><%= @coin["name"] %></h4>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <strong>Symbol:</strong><br><%= @coin["symbol"] %><br>
+      <strong>Rank:</strong> <%= @coin["cmc_rank"] %> <br>
+      <strong>Current Price</strong> $<%= @coin["quote"]["USD"]["price"] %> <br>
+      <strong>Cost Paid Per Coin: </strong> $ <%= @crypto.cost_per %> <br>   
+      <strong>Amount Owned: </strong> $<%= @crypto.amount_owned %><br>
+      <strong>Profit/Loss</strong> $<%= ((@coin["quote"]["USD"]["price"].to_d * @crypto.amount_owned) - (@crypto.cost_per * @crypto.amount_owned)).round(4) %>
+    </p>
+  </div>
+  <div class="card-footer bg-transparent border-dark text-center">
+    <%= link_to "Back", cryptos_path, class: "btn btn-info" %>
+    <%= link_to "Edit", edit_crypto_path, class: "btn btn-warning" %>
+    <%= link_to "Delete", crypto_path(@crypto), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+  </div>
+</div>

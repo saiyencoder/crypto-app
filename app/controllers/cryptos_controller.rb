@@ -2,13 +2,15 @@ class CryptosController < ApplicationController
   before_action :authenticate_user!
   before_action :set_crypto, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
-  before_action :api_data, only: [:index]
+  before_action :api_data, only: [:index, :show]
 
   def index
     @cryptos = Crypto.all
   end
   
   def show
+    @coin_in_hash = @data.select{|coin| coin["symbol"] == @crypto.symbol.upcase}
+    @coin = @coin_in_hash.first
   end
 
   def new
