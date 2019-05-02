@@ -11,13 +11,13 @@
     <thead class="crypto-table-header text-white">
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">Current Price</th>
         <th scope="col">Rank</th>
-        <th scope="col">Current Value</th>
-        <th scope="col">Total Paid</th>
-        <th scope="col">Profit/Loss</th>
+        <th scope="col">Current Price (CP)</th>
+        <th scope="col">Current Value (CV)</th>
         <th scope="col">Cost Paid Per</th>
-        <th scope="col">Amount Owned</th>
+        <th scope="col">Own (O)</th>
+        <th scope="col">Total Paid (TP)</th>
+        <th scope="col">Profit/Loss (CV * O - TP)</th>
       </tr>
     </thead>
     <tbody>
@@ -27,13 +27,13 @@
           <% @data.each do |coin|  %>
             <% if crypto.symbol.upcase == coin["symbol"] %>
               <td> <%= link_to c_name(coin), crypto %> </td>
-              <td> $<%= price_value(coin).round(4) %> </td>
               <td> <%= rank(coin) %> </td>
-              <td> $<%= ( price_value(coin) * crypto.amount_owned).round(4) %> </td>
-              <td> $<%= crypto.cost_per * crypto.amount_owned %> </td>
-              <td> $<%= ((price_value(coin) * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)).round(4) %> </td>
+              <td> $<%= current_value(coin).round(4) %> </td>
+              <td> $<%= (current_value(coin) * crypto.amount_owned).round(4) %> </td>      
               <td> <%= number_to_currency(crypto.cost_per) %> </td>
-              <td> <%= number_to_currency(crypto.amount_owned) %> </td>
+              <td> <%= crypto.amount_owned %> </td>
+              <td> $<%= crypto.cost_per * crypto.amount_owned %> </td>
+              <td> $<%= calucate_profit_loss(coin,crypto).round(4) %> </td>
               <% @total += calucate_profit_loss(coin,crypto) %>
             <% end %>
           <% end %>
@@ -45,7 +45,7 @@
 </div>
 
 <div class="container">
-  <strong>Overall Profit/Loss: </strong> $<%= @total.round(2) %>
+  <strong>Overall Profit/Loss: </strong> $<%= @total.round(2)%>
 </div><br>
 
 
