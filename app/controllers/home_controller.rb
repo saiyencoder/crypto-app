@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
-  before_action :api_data, only: [:index, :search]
+  before_action :authenticate_user!, only: [:search]
+  before_action :api_data, only: [:search]
   
   def index
-    @my_coins = ["BTC","XRP","ADA","XLM", "STEEM"]
+    @name = current_user.email[/[^@]+/].capitalize if signed_in?
   end
 
   def about

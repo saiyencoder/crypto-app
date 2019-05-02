@@ -5,41 +5,41 @@
   <div class="card-body">
     <p class="card-text">
       <div class="row">
-        <div class="col-sm-6">
-          <strong>Symbol:</strong><br><%= @coin["symbol"] %>
+        <div class="col-sm-4">
+          <strong>1 HR Change</strong><br><%= @coin_change_1h %>%
         </div>
-        <div class="col-sm-6">
-          <strong>Rank:</strong><br> <%= @coin["cmc_rank"] %>
+        <div class="col-sm-4">
+          <strong>24 HR Change</strong><br><%= @coin_change_24h %>%
+        </div>
+        <div class="col-sm-4">
+          <strong>7 Day Change</strong><br><%= @coin_change_7d %>%
         </div>
       </div>
-      <br>
-      <div class="row">
-        <div class="col-sm-4">
-          <strong>1 HR Change</strong><br><%= @coin["quote"]["USD"]["percent_change_1h"] %>%
-        </div>
-        <div class="col-sm-4">
-          <strong>24 HR Change</strong><br><%= @coin["quote"]["USD"]["percent_change_24h"] %>%
-        </div>
-        <div class="col-sm-4">
-          <strong>7 Day Change</strong><br><%= @coin["quote"]["USD"]["percent_change_7d"] %>%
-        </div>
-      </div>
-      <br>
+        <br>
       <div class="row">
         <div class="col-sm-6">
-          <strong>Current Price:</strong><br> $<%= @coin["quote"]["USD"]["price"] %>
+          <strong>Symbol:</strong><br><%= @coin_symbol %>
         </div>
         <div class="col-sm-6">
-          <strong>Profit/Loss:</strong> <br> $<%= ((@coin["quote"]["USD"]["price"].to_d * @crypto.amount_owned) - (@crypto.cost_per * @crypto.amount_owned)).round(4) %>    
+          <strong>Rank:</strong><br> <%= @coin_rank %>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-sm-6">
-          <strong>Amount Owned: </strong> <br> $<%= @crypto.amount_owned %>
+          <strong>Current Price:</strong><br> $<%= @coin_price %>
         </div>
         <div class="col-sm-6">
-          <strong>Cost Paid Per Coin:</strong> <br> $ <%= @crypto.cost_per %>  
+          <strong>Profit/Loss:</strong> <br> $<%= @profit_loss %>    
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <strong>Amount Owned: </strong> <br> <%= @crypto.amount_owned %>
+        </div>
+        <div class="col-sm-6">
+          <strong>Cost Paid Per Coin:</strong> <br> <%= number_to_currency(@crypto.cost_per) %>  
         </div>
       </div>
     </p>

@@ -1,1 +1,21 @@
-<h1>About Page</h1>
+<div class="crypto-header">
+  <div class="card text-white mx-auto inside-crypto-header" style="width: 25rem;">
+    <div class="card-body text-center">
+      <h1>About This App</h1>
+    </div>
+  </div>
+</div>
+
+<div class="about-card">
+  <div class="card mx-auto" style="width: 40rem;">
+    <div class="card-body">
+      <h3 class="card-text">
+        Welcome to the crypto currency app. </br></br> Here you can keep track of all the crypto coins you own. </br> You can search information on a new coin or you can add a new coin to your list. </br> You can follow how the coin is doing in the market and see if it is bringing in a profit or a loss and so much more. </br></br> So sign up or log in and good luck to you in the crypto currency market
+      </h3>
+    </div>
+    <div class="card-footer text-muted text-center">
+      <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to 'Log In', new_user_session_path, class: "btn btn-warning" %>
+    </div>
+  </div>
+</div>

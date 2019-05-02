@@ -11,16 +11,13 @@
     <thead class="crypto-table-header text-white">
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">Current Price</th>
         <th scope="col">Rank</th>
-        <th scope="col">1 HR %</th>
-        <th scope="col">24 HR %</th>
-        <th scope="col">7 Day %</th>
-        <th scope="col">Current Value</th>
-        <th scope="col">Total Paid</th>
-        <th scope="col">Profit/Loss</th>
+        <th scope="col">Current Price (CP)</th>
+        <th scope="col">Current Value (CV)</th>
         <th scope="col">Cost Paid Per</th>
-        <th scope="col">Amount Owned</th>
+        <th scope="col">Own (O)</th>
+        <th scope="col">Total Paid (TP)</th>
+        <th scope="col">Profit/Loss (CV * O - TP)</th>
       </tr>
     </thead>
     <tbody>
@@ -29,18 +26,15 @@
         <% if crypto.user_id == current_user.id %>
           <% @data.each do |coin|  %>
             <% if crypto.symbol.upcase == coin["symbol"] %>
-              <td> <%= link_to coin["name"], crypto %> </td>
-              <td> $<%= coin["quote"]["USD"]["price"].to_d.round(4) %> </td>
-              <td> <%= coin["cmc_rank"] %> </td>
-              <td> <%= coin["quote"]["USD"]["percent_change_1h"] %>% </td>
-              <td> <%= coin["quote"]["USD"]["percent_change_24h"] %>% </td>
-              <td> <%= coin["quote"]["USD"]["percent_change_7d"] %>% </td>
-              <td> $<%= (coin["quote"]["USD"]["price"].to_d * crypto.amount_owned).round(4) %> </td>
-              <td> $<%= crypto.cost_per * crypto.amount_owned %> </td>
-              <td> $<%= ((coin["quote"]["USD"]["price"].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)).round(4) %> </td>
+              <td> <%= link_to c_name(coin), crypto %> </td>
+              <td> <%= rank(coin) %> </td>
+              <td> $<%= current_value(coin).round(4) %> </td>
+              <td> $<%= (current_value(coin) * crypto.amount_owned).round(4) %> </td>      
               <td> <%= number_to_currency(crypto.cost_per) %> </td>
-              <td> <%= number_to_currency(crypto.amount_owned) %> </td>
-              <% @total += ((coin["quote"]["USD"]["price"].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)) %>
+              <td> <%= crypto.amount_owned %> </td>
+              <td> $<%= crypto.cost_per * crypto.amount_owned %> </td>
+              <td> $<%= calucate_profit_loss(coin,crypto).round(4) %> </td>
+              <% @total += calucate_profit_loss(coin,crypto) %>
             <% end %>
           <% end %>
         <% end %>
@@ -51,7 +45,7 @@
 </div>
 
 <div class="container">
-  <strong>Overall Profit/Loss: </strong> $<%= @total.round(2) %>
+  <strong>Overall Profit/Loss: </strong> <span><%= number_to_currency(@total) %></span>
 </div><br>
 
 
