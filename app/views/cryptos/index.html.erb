@@ -13,9 +13,6 @@
         <th scope="col">Name</th>
         <th scope="col">Current Price</th>
         <th scope="col">Rank</th>
-        <th scope="col">1 HR %</th>
-        <th scope="col">24 HR %</th>
-        <th scope="col">7 Day %</th>
         <th scope="col">Current Value</th>
         <th scope="col">Total Paid</th>
         <th scope="col">Profit/Loss</th>
@@ -29,18 +26,15 @@
         <% if crypto.user_id == current_user.id %>
           <% @data.each do |coin|  %>
             <% if crypto.symbol.upcase == coin["symbol"] %>
-              <td> <%= link_to coin["name"], crypto %> </td>
-              <td> $<%= coin["quote"]["USD"]["price"].to_d.round(4) %> </td>
-              <td> <%= coin["cmc_rank"] %> </td>
-              <td> <%= coin["quote"]["USD"]["percent_change_1h"] %>% </td>
-              <td> <%= coin["quote"]["USD"]["percent_change_24h"] %>% </td>
-              <td> <%= coin["quote"]["USD"]["percent_change_7d"] %>% </td>
-              <td> $<%= (coin["quote"]["USD"]["price"].to_d * crypto.amount_owned).round(4) %> </td>
+              <td> <%= link_to c_name(coin), crypto %> </td>
+              <td> $<%= price_value(coin).round(4) %> </td>
+              <td> <%= rank(coin) %> </td>
+              <td> $<%= ( price_value(coin) * crypto.amount_owned).round(4) %> </td>
               <td> $<%= crypto.cost_per * crypto.amount_owned %> </td>
-              <td> $<%= ((coin["quote"]["USD"]["price"].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)).round(4) %> </td>
+              <td> $<%= ((price_value(coin) * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)).round(4) %> </td>
               <td> <%= number_to_currency(crypto.cost_per) %> </td>
               <td> <%= number_to_currency(crypto.amount_owned) %> </td>
-              <% @total += ((coin["quote"]["USD"]["price"].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)) %>
+              <% @total += calucate_profit_loss(coin,crypto) %>
             <% end %>
           <% end %>
         <% end %>
