@@ -40,6 +40,7 @@
               <td> $<%= ((coin["quote"]["USD"]["price"].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)).round(4) %> </td>
               <td> <%= number_to_currency(crypto.cost_per) %> </td>
               <td> <%= number_to_currency(crypto.amount_owned) %> </td>
+              <% @total += ((coin["quote"]["USD"]["price"].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)) %>
             <% end %>
           <% end %>
         <% end %>
@@ -48,6 +49,11 @@
     </tbody>
   </table>
 </div>
+
+<div class="container">
+  <strong>Overall Profit/Loss: </strong> $<%= @total.round(2) %>
+</div><br>
+
 
 <div class="container-fluid">
   <%= link_to 'New Crypto', new_crypto_path, class: "btn btn-primary" %> 

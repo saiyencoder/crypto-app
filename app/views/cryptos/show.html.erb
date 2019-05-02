@@ -1,15 +1,47 @@
-<div class="card bg-light border-dark mb-3 mx-auto" style="max-width: 18rem;">
+<div class="card bg-light border-dark mb-3 mx-auto" style="max-width: 30rem;">
   <div class="card-header text-white text-center inside-crypto-header">
     <h4><%= @coin["name"] %></h4>
   </div>
   <div class="card-body">
     <p class="card-text">
-      <strong>Symbol:</strong><br><%= @coin["symbol"] %><br>
-      <strong>Rank:</strong> <%= @coin["cmc_rank"] %> <br>
-      <strong>Current Price</strong> $<%= @coin["quote"]["USD"]["price"] %> <br>
-      <strong>Cost Paid Per Coin: </strong> $ <%= @crypto.cost_per %> <br>   
-      <strong>Amount Owned: </strong> $<%= @crypto.amount_owned %><br>
-      <strong>Profit/Loss</strong> $<%= ((@coin["quote"]["USD"]["price"].to_d * @crypto.amount_owned) - (@crypto.cost_per * @crypto.amount_owned)).round(4) %>
+      <div class="row">
+        <div class="col-sm-6">
+          <strong>Symbol:</strong><br><%= @coin["symbol"] %>
+        </div>
+        <div class="col-sm-6">
+          <strong>Rank:</strong><br> <%= @coin["cmc_rank"] %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-4">
+          <strong>1 HR Change</strong><br><%= @coin["quote"]["USD"]["percent_change_1h"] %>%
+        </div>
+        <div class="col-sm-4">
+          <strong>24 HR Change</strong><br><%= @coin["quote"]["USD"]["percent_change_24h"] %>%
+        </div>
+        <div class="col-sm-4">
+          <strong>7 Day Change</strong><br><%= @coin["quote"]["USD"]["percent_change_7d"] %>%
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <strong>Current Price:</strong><br> $<%= @coin["quote"]["USD"]["price"] %>
+        </div>
+        <div class="col-sm-6">
+          <strong>Profit/Loss:</strong> <br> $<%= ((@coin["quote"]["USD"]["price"].to_d * @crypto.amount_owned) - (@crypto.cost_per * @crypto.amount_owned)).round(4) %>    
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <strong>Amount Owned: </strong> <br> $<%= @crypto.amount_owned %>
+        </div>
+        <div class="col-sm-6">
+          <strong>Cost Paid Per Coin:</strong> <br> $ <%= @crypto.cost_per %>  
+        </div>
+      </div>
     </p>
   </div>
   <div class="card-footer bg-transparent border-dark text-center">

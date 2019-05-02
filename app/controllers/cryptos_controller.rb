@@ -6,6 +6,7 @@ class CryptosController < ApplicationController
 
   def index
     @cryptos = Crypto.all
+    @total = 0
   end
   
   def show
