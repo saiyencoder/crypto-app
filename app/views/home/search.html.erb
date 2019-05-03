@@ -17,12 +17,34 @@
 
 <% if @symbol && @symbol != "" %>
   <div class="search-card">
-    <div class="card mx-auto border-dark mb-3" style="width: 40rem;">
+    <div class="card mx-auto border-dark mb-3" style="width: 45rem;">
       <div class="card-header bg-primary text-white text-center">
-        <h4><%= @symbol["symbol"] %></h4>
+        <h4><%= @coin_name %></h4>
       </div>
       <div class="card-body text-center">
-        <%= @symbol["name"] %>: $<%= @symbol["quote"]["USD"]["price"] %>
+        <div class="row">
+          <div class="col-sm-4">
+            <strong>Symbol:</strong> <br> <%= @coin_symbol %>
+          </div>
+          <div class="col-sm-4">
+            <strong>Rank:</strong> <br> <%= @coin_rank %>
+          </div>
+          <div class="col-sm-4">
+            <strong>Current Price:</strong> <br> $<%= @coin_price %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-4">
+            <strong>Change in last hour:</strong> <br> <%= @coin_change_1h %>%
+          </div>
+          <div class="col-sm-4">
+            <strong>Change in last 24 hours:</strong> <br> <%= @coin_change_24h %>%
+          </div>
+          <div class="col-sm-4">
+            <strong>Change in last 7 days:</strong> <br> <%= @coin_change_7d %>%
+          </div>
+        </div>
       </div>        
     </div>
   </div>

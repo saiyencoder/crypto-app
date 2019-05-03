@@ -22,12 +22,25 @@ class HomeController < ApplicationController
         # If search is not a valid symbol
         if found_symbol.empty?
           @symbol = false
-          flash.now[:notice] = "Invalid entry. Please try again"
+          flash.now[:notice] = "Invalid entry. Symbol was not found in the coin market."
         else
           @symbol = found_symbol.first
+          search_variables(@symbol)
         end
       end
     end
+  end
+
+  private
+
+  def search_variables(symbol)
+    @coin_name = symbol["name"]
+    @coin_change_1h = symbol["quote"]["USD"]["percent_change_1h"]
+    @coin_change_24h = symbol["quote"]["USD"]["percent_change_24h"]
+    @coin_change_7d = symbol["quote"]["USD"]["percent_change_7d"]
+    @coin_symbol = symbol["symbol"]
+    @coin_rank = symbol["cmc_rank"]
+    @coin_price = symbol["quote"]["USD"]["price"].to_d
   end
 
 end
