@@ -18,16 +18,12 @@
 <% if @symbol && @symbol != "" %>
   <div class="search-card">
     <div class="card mx-auto border-dark mb-3" style="width: 40rem;">
-      <% @data.each do |coin| %>
-        <% if coin["symbol"] == @symbol %>
-        <div class="card-header bg-primary text-white text-center">
-          <h4><%= coin["symbol"] %></h4>
-        </div>
-        <div class="card-body text-center">
-          <%= coin["name"] %>: $<%= coin["quote"]["USD"]["price"] %>
-        </div>
-        <% end %>
-      <% end %>
+      <div class="card-header bg-primary text-white text-center">
+        <h4><%= @symbol["symbol"] %></h4>
+      </div>
+      <div class="card-body text-center">
+        <%= @symbol["name"] %>: $<%= @symbol["quote"]["USD"]["price"] %>
+      </div>        
     </div>
   </div>
 <% end %>
