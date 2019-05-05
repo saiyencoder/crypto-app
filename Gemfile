@@ -16,6 +16,7 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'httparty', '~> 0.17.0'
 gem 'devise', '~> 4.6', '>= 4.6.2'
 gem 'pry-byebug'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -29,6 +30,7 @@ end
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
+  gem "aws-sdk-s3", require: false
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
