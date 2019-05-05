@@ -24,6 +24,11 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pg', '>= 0.18', '< 2.0'
+end
+
+group :production do
+  gem 'pg', '>= 0.18', '< 2.0'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
